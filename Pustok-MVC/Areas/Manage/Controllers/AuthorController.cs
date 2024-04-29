@@ -21,6 +21,11 @@ namespace Pustok_MVC.Areas.Manage.Controllers
             return View(PaginatedList<Author>.Create(_context.Authors.Include(x=>x.Books), page, 2));
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Create(Author author)
         {

@@ -21,6 +21,11 @@ namespace Pustok_MVC.Areas.Manage.Controllers
             return View(PaginatedList<Slider>.Create(_context.Sliders, page, 2));
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Create(Slider slider)
         {

@@ -18,9 +18,14 @@ namespace Pustok_MVC.Areas.Manage.Controllers
         }
         public IActionResult Index(int page = 1)
         {
-            return View(PaginatedList<Genre>.Create(_context.Genres.Include(x => x.Books), page, 2));
+            var query = _context.Genres.Include(x => x.Books);
+            return View(PaginatedList<Genre>.Create(query, page, 2));
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult Create(Genre genre)
@@ -39,7 +44,7 @@ namespace Pustok_MVC.Areas.Manage.Controllers
             _context.Genres.Add(genre);
             _context.SaveChanges();
 
-            return RedirectToAction("index");
+            return RedirectToAction("Index");
         }
     }
 }
